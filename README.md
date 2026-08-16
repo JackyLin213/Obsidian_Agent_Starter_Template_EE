@@ -12,12 +12,12 @@
 
 ## 🌟 核心特色
 
-- 🔬 **硬體系統工程套件 (EE Suite)**：內建 `Hardware Debug Note`（波形截圖、5-Whys 根因分析、飛線改板與 ECO）與 `Component Spec`（75%/60% 降額檢核、Layout 避坑、第二料源）。
+- 🔬 **硬體系統工程套件 (EE Suite)**：內建 `Hardware Architecture & Power Tree Spec`（系統架構、電源樹、上電時序、匯流排拓撲）、`PCB Stackup & SIPI Spec`（疊構阻抗控制、回流路徑防呆、Layout Freeze 檢核）、`Hardware Test & Validation Report`（DVT 驗收矩陣、紋波/眼圖/溫升實測、自動化測試）、`EMC & Compliance Note`（CISPR/FCC 認證、超標頻點整改、ESD/Surge）、`Hardware Debug Note`（波形截圖、5-Whys 根因分析、飛線改板與 ECO）與 `Component Spec`（75%/60% 降額檢核、Layout 避坑、第二料源）。
 - ⚡ **嵌入式韌體工程套件 (FW Suite)**：內建 `Firmware Driver Spec`（暫存器映射、I2C/SPI 時序）、`Firmware Architecture & RTOS Spec`（FSM 狀態機、任務優先級、堆疊預算、多任務看門狗）、`Firmware Protocol & Packet Spec`（二進位幀格式、TLV/命令集、CRC、重傳機制）與 `Firmware Bootloader & OTA Spec`（Flash 分區地圖、A/B 雙分區熱切換、ECDSA 簽名防回滾）。
 - 💻 **軟體系統工程套件 (SW Suite)**：內建 `Software Bug Note`（Call Stack 堆疊、MRE 重現、CI 回歸防線）、`API Spec`（REST/gRPC 介面契約、時序圖）、`Software RFC`（架構提案、SQL 資料模型、灰度遷移）與 `Code Snippet / Pattern`（複雜度分析、Cache 對齊）。
 - 🏛️ **PARA × Zettelkasten 頂級融合**：以 PARA 驅動研發專案 (EVT/DVT/PVT 或 Release vX.Y) 與責任領域，以卡片盒沉澱跨領域長青原子知識。
-- 🤖 **AI Agent 雙軌整理流水線 (`AGENTS.md` v5.0.0)**：內建「單筆 5 步提煉狀態機」與「全庫 5 大防禦巡檢矩陣」，支援自動防重檢索、MOC 主動織網自愈、Inbox Zero 歸檔與操作安全分級。
-- 📑 **全套 25 大場景專業模板 (7 大模組化目錄)**：依工程職責嚴格分類為硬體、韌體、軟體、知識、專案、實體與覆盤 7 大子目錄。
+- 🤖 **AI Agent 雙軌整理流水線 (`AGENTS.md` v5.0.0)**：內建「單筆 5 步提煉狀態基」與「全庫 5 大防禦巡檢矩陣」，支援自動防重檢索、MOC 主動織網自愈、Inbox Zero 歸檔與操作安全分級。
+- 📑 **全套 29 大場景專業模板 (7 大模組化目錄)**：依工程職責嚴格分類為硬體、韌體、軟體、知識、專案、實體與覆盤 7 大子目錄。
 - 📊 **多維視覺繪圖規範 (Diagramming Standards)**：內建 11 大研發場景圖表選型矩陣（Mermaid `flowchart`, `stateDiagram`, `sequenceDiagram`, `gantt`, `mindmap`, `erDiagram`, `quadrantChart` + `WaveDrom` 數位匯流排時序 + `ASCII Box` 記憶體地圖/引腳佈局 + 原生 Canvas 畫布）。
 - 📊 **Dataview 動態看板**：提供開箱即用的軟硬韌 Issue 看板、元件庫查詢、RTOS 任務清單、協議目錄、API 目錄、RFC 管道與專案追蹤。
 
@@ -46,8 +46,8 @@
 └── 90_System/                 # [系統設定] 模板庫、附件與 Dataview 語法參考
     ├── Attachments/           # 附件集中存放區（示波器波形圖、PCB 圖紙、架構圖、PDF 等）
     ├── Dataview_Queries.md    # 常用 Dataview 查詢代碼庫 (含軟硬韌 Issue 看板、API 目錄與元件庫)
-    └── Templates/             # 25 大標準筆記模板庫 (分 7 大模組化子資料夾)
-        ├── 01_Hardware/       # 🔬 [硬體工程 2 款] (Debug, Component)
+    └── Templates/             # 29 大標準筆記模板庫 (分 7 大模組化子資料夾)
+        ├── 01_Hardware/       # 🔬 [硬體工程 6 款] (Debug, Component, Architecture/PowerTree, Stackup/SIPI, Validation, EMC)
         ├── 02_Firmware/       # ⚡ [嵌入式韌體 4 款] (Driver, RTOS, Protocol, OTA)
         ├── 03_Software/       # 💻 [軟體工程 4 款] (Bug, API, RFC, Pattern)
         ├── 04_Knowledge/      # 💎 [知識沉澱 6 款] (Permanent, Literature, Book, Paper, Fleeting, MOC)
@@ -58,11 +58,15 @@
 
 ---
 
-## 📚 25 大核心模板清單 (`90_System/Templates/`)
+## 📚 29 大核心模板清單 (`90_System/Templates/`)
 
 | 子資料夾 | 模板名稱 | 適用場景與特色 |
 | :--- | :--- | :--- |
-| **`01_Hardware/`** | `Template - Hardware Debug Note.md` ⭐ | **硬體除錯/測試實驗**：量測波形截圖、5-Whys 根因分析、飛線改板與 ECO 閉環 |
+| **`01_Hardware/`** | `Template - Hardware Architecture & Power Tree Spec.md` ⭐ | **硬體架構/電源樹規格**：系統方塊圖、分級電源樹、效率與熱損耗計算、上電/掉電時序約束、匯流排拓撲 |
+| | `Template - PCB Stackup & SIPI Spec.md` ⭐ | **PCB 疊構/SI-PI 規格**：8層/多層對稱疊構、阻抗控制矩陣 (50Ω/90Ω/100Ω)、回流地孔規範、Layout Freeze 檢核表 |
+| | `Template - Hardware Test & Validation Report.md` ⭐ | **硬體驗收/DVT 報告**：EVT/DVT 驗收矩陣、全電源軌紋波/眼圖實測、高低溫熱溫升測試、Python 自動化腳本 |
+| | `Template - EMC & Compliance Note.md` ⭐ | **EMC/認證合規卡**：CISPR/FCC 頻譜掃描、超標頻點近場定位、共模扼流圈/Snubber 整改對策、ESD/Surge 防護 |
+| | `Template - Hardware Debug Note.md` ⭐ | **硬體除錯/測試實驗**：量測波形截圖、5-Whys 根因分析、飛線改板與 ECO 閉環 |
 | | `Template - Component Spec.md` ⭐ | **晶片/元件選型**：電氣參數表、75%/60% 降額檢核、Vendor Layout 避坑、第二料源 |
 | **`02_Firmware/`** | `Template - Firmware Driver Spec.md` ⚡ | **晶片驅動/HAL 規格**：暫存器映射、I2C/SPI 時序、HAL API 宣告、硬體防死鎖恢復 |
 | | `Template - Firmware Architecture & RTOS Spec.md` ⚡ | **韌體架構/RTOS 規格**：時鐘樹、FSM 狀態機、任務堆疊預算、IPC 同步、多任務看門狗 |
@@ -99,7 +103,7 @@
 | 外掛名稱 | 外掛 ID / 功能 | 核心應用場景與本庫角色 | 建議設定重點 |
 | :--- | :--- | :--- | :--- |
 | **Dataview** | `dataview`<br>動態資料庫查詢 | **核心驅動引擎**：驅動所有 MOC 主題地圖、軟硬韌 Issue 看板、元件選型清單、API 規格表與週/月覆盤自動化匯總。 | 啟用 `Enable JavaScript Queries` 與 `Enable Inline JavaScript Queries`。 |
-| **Templater** | `templater-obsidian`<br>動態模板腳本 | **模板自動化**：執行 `90_System/Templates/` 下 25 款專業模板，自動注入時間戳、動態 Frontmatter 與目錄路由變數。 | Template folder 設定為 `90_System/Templates`，啟用 `Trigger Templater on new file creation`。 |
+| **Templater** | `templater-obsidian`<br>動態模板腳本 | **模板自動化**：執行 `90_System/Templates/` 下 29 款專業模板，自動注入時間戳、動態 Frontmatter 與目錄路由變數。 | Template folder 設定為 `90_System/Templates`，啟用 `Trigger Templater on new file creation`。 |
 | **WaveDrom** | `obsidian-wavedrom`<br>數位時序波形渲染 | **硬體/韌體匯流排時序**：支援 I2C、SPI、UART、CAN、以太網等數位匯流排的 Setup/Hold Time、時鐘沿與資料幀渲染。 | 安裝後即可直接在代碼塊使用 ````wavedrom` 語法。 |
 | **Omnisearch** | `omnisearch`<br>AI 級全文即時檢索 | **毫秒級全庫檢索**：支援中文分詞、晶片型號（Part Number）、暫存器名稱及 PDF Datasheet / App Note 內文深度檢索。 | 建議建立索引並可啟用 PDF/Office 內文檢索擴充。 |
 | **Linter** | `obsidian-linter`<br>格式化與規範檢查 | **元數據防呆與排版**：自動檢查並格式化 YAML Frontmatter、標題層級、中英文空格及無效空行，維持全庫高度一致性。 | 設定存檔時自動執行（Lint on save），確保 Frontmatter 合規。 |

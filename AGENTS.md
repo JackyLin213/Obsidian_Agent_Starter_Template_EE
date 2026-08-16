@@ -55,10 +55,14 @@
 └── 90_System/                 # [系統設定] 模板（Templates）、附件庫（Attachments）與系統腳本
     ├── Attachments/           # [附件] 示波器波形截圖、PCB 圖紙、架構圖、PDF 等資源集中存放區
     ├── Dataview_Queries.md    # [查詢庫] 常用 Dataview 查詢範例庫（含軟硬體除錯/元件選型/韌體庫/API）
-    └── Templates/             # [模板庫] 涵蓋 25 大全棧研發情境之 Templater / Markdown 模板 (分 7 大模組資料夾)
+    └── Templates/             # [模板庫] 涵蓋 29 大全棧研發情境之 Templater / Markdown 模板 (分 7 大模組資料夾)
         ├── 01_Hardware/       # 🔬 [硬體工程]
         │   ├── Template - Hardware Debug Note.md    # 硬體除錯與實驗測試卡 (EE 核心)
-        │   └── Template - Component Spec.md         # 晶片與元器件選型卡 (EE 核心)
+        │   ├── Template - Component Spec.md         # 晶片與元器件選型卡 (EE 核心)
+        │   ├── Template - Hardware Architecture & Power Tree Spec.md # 硬體系統架構與電源樹規劃卡 (EE 核心)
+        │   ├── Template - PCB Stackup & SIPI Spec.md# PCB 疊構阻抗與 SI/PI 規格卡 (EE 核心)
+        │   ├── Template - Hardware Test & Validation Report.md # 硬體測試驗證與 DVT 驗收報告 (EE 核心)
+        │   └── Template - EMC & Compliance Note.md  # EMC 電磁相容與認證防護卡 (EE 核心)
         ├── 02_Firmware/       # ⚡ [嵌入式韌體]
         │   ├── Template - Firmware Driver Spec.md   # 晶片驅動與 HAL 規格卡 (FW 核心)
         │   ├── Template - Firmware Architecture & RTOS Spec.md # 韌體狀態機與 RTOS 任務卡 (FW 核心)
@@ -101,6 +105,10 @@
 | :--- | :--- |
 | **Hardware Debug (硬體除錯)** | `project: "[[專案]]"`, `board_rev: "EVT"`, `board_sn: "DUT-01"`, `fw_ver: "v0.1.0"`, `severity: "Major"`, `issue_type: "SIPI"`, `eco_number: ""`, `instruments: []` |
 | **Component Spec (晶片選型)** | `part_number: ""`, `manufacturer: "TI"`, `category: "Power/DC-DC"`, `package: ""`, `pin_count: ""`, `temp_grade: "Industrial"`, `lifecycle_status: "Active"`, `second_source_status: "Available"`, `unit_price_usd: ""`, `datasheet_url: ""` |
+| **HW Architecture (硬體架構與電源樹)** | `project: "[[專案]]"`, `board_rev: "EVT"`, `lead_architect: "[[人物]]"`, `total_power_budget_w: "25W"`, `main_soc_mcu: "[[晶片]]"`, `input_voltage_range: "9V - 36V"`, `status: "draft"` |
+| **PCB Stackup & SIPI (疊構與阻抗)** | `project: "[[專案]]"`, `board_rev: "EVT"`, `layer_count: 8`, `board_thickness_mm: "1.6mm"`, `material_type: "IT-180TC"`, `diff_impedance_target: "90Ω / 100Ω"`, `pcb_vendor: ""`, `status: "approved"` |
+| **Hardware Validation (硬體驗證報告)** | `project: "[[專案]]"`, `board_rev: "DVT"`, `board_sn: "DUT-01"`, `test_stage: "DVT"`, `test_engineer: "[[人物]]"`, `overall_verdict: "Pass"`, `total_tests: 24`, `passed_tests: 24`, `status: "completed"` |
+| **EMC & Compliance (電磁相容認證)** | `project: "[[專案]]"`, `board_rev: "DVT"`, `standard_target: "CISPR 32 Class B"`, `test_lab: ""`, `min_pass_margin_db: "4.2 dB"`, `issue_type: "RE"`, `eco_number: ""`, `status: "passed"` |
 | **FW Driver (晶片驅動)** | `driver_name: ""`, `target_chip: "[[晶片]]"`, `bus_type: "I2C"`, `bus_clock_speed: "400 kHz"`, `os_target: "FreeRTOS"`, `code_repo: ""` |
 | **FW RTOS (韌體架構)** | `target_mcu: ""`, `rtos_kernel: "FreeRTOS"`, `tick_rate_hz: "1000 Hz"`, `system_clock_mhz: "480 MHz"`, `total_sram_kb: ""`, `lead_architect: "[[人物]]"`, `project: "[[專案]]"` |
 | **FW Protocol (通訊封包)** | `protocol_name: ""`, `physical_layer: "UART"`, `frame_encoding: "Binary"`, `checksum_type: "CRC-16"`, `max_payload_size: "256 Bytes"`, `project: "[[專案]]"` |
@@ -129,7 +137,7 @@ flowchart LR
 
 ---
 
-## 📑 5. 模板自動選擇判定協議與 25 大場景基準庫
+## 📑 5. 模板自動選擇判定協議與 29 大場景基準庫
 
 當接收到輸入或需要建立筆記時，Agent 依據內容特徵自動匹配 `90_System/Templates/` 下的最佳模板：
 
@@ -139,6 +147,10 @@ flowchart LR
     
     Type -->|硬體除錯 / 示波器波形 / 5-Whys| T_HDebug["01_Hardware/Template - Hardware Debug Note.md"]
     Type -->|晶片選型 / 元件規格 / 降額| T_Comp["01_Hardware/Template - Component Spec.md"]
+    Type -->|硬體架構 / 電源樹 / 上電時序| T_HArch["01_Hardware/Template - Hardware Architecture & Power Tree Spec.md"]
+    Type -->|PCB疊構 / 阻抗控制 / 回流 / Layout| T_HPCB["01_Hardware/Template - PCB Stackup & SIPI Spec.md"]
+    Type -->|DVT驗收 / 紋波眼圖實測 / 溫升測試| T_HVal["01_Hardware/Template - Hardware Test & Validation Report.md"]
+    Type -->|EMC輻射傳導 / ESD防護 / 認證整改| T_HEMC["01_Hardware/Template - EMC & Compliance Note.md"]
     
     Type -->|晶片底層驅動 / 暫存器映射 / HAL| T_FW_Drv["02_Firmware/Template - Firmware Driver Spec.md"]
     Type -->|RTOS 任務排程 / 狀態機 FSM / 中斷| T_FW_RTOS["02_Firmware/Template - Firmware Architecture & RTOS Spec.md"]
@@ -231,7 +243,7 @@ flowchart TD
     
     %% 單筆提煉流水線
     Mode -->|單筆輸入 / 剪藏 / 雜記 / 會議日誌| S1["1. 攝入與防重掃描<br>search_notes 檢索現有卡片"]
-    S1 --> S2["2. 解構與模板匹配<br>判斷拆分 / 匹配 §5 25大模板"]
+    S1 --> S2["2. 解構與模板匹配<br>判斷拆分 / 匹配 §5 29大模板"]
     S2 --> S3["3. 規範化編寫與架構審查<br>§3 Frontmatter + §4 路由 + §1 審查"]
     S3 --> S4["4. 織網、MOC 回寫與歸檔<br>寫入卡片 + 更新 MOC + 移入 Archives"]
     S4 --> S5["5. 覆盤摘要回報<br>輸出變更對照與審查亮點"]
@@ -265,7 +277,7 @@ flowchart TD
 1. **多概念拆分判定 (Atomicity Check)**：
    - **專案/會議/日誌脈絡（Contextual Notes）**：保留原始筆記結構並原地規範化，僅將其中具長期複用價值的純技術理論/架構模式抽取為獨立卡片，並在原筆記中插入 `[[wikilinks]]`。
    - **Inbox 雜記/剪藏（Fleeting / Raw Clippings）**：萃取關鍵知識為原子卡片後，原始檔標記準備封存。
-2. **模板自動命中**：對照 [第 5 章模板選擇矩陣](#-5-模板自動選擇判定協議與-25-大場景基準庫)，從 `90_System/Templates/` 的 25 款模板中鎖定最佳模板。
+2. **模板自動命中**：對照 [第 5 章模板選擇矩陣](#-5-模板自動選擇判定協議與-29-大場景基準庫)，從 `90_System/Templates/` 的 29 款模板中鎖定最佳模板。
 
 #### Stage 3: 規範化編寫與全棧架構審查 (Drafting & Tri-Stack Architect Review)
 1. **Frontmatter 元數據填充**：嚴格依據 [第 3 章規範](#-3-元數據標準化-metadata-frontmatter-schema) 填寫專屬欄位（禁止缺漏關鍵欄位）。

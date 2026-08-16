@@ -230,3 +230,52 @@ FROM "30_Resources/02_Permanent"
 WHERE contains(tags, "Firmware/OTA") OR contains(tags, "Firmware/Bootloader")
 SORT file.name ASC
 ```
+
+---
+
+## 19. 🏛️ 硬體系統架構與電源樹看板 (Hardware Architecture & Power Tree Registry)
+追蹤各專案之單板硬體系統架構、電源樹預算與主晶片選型：
+
+```dataview
+TABLE project AS "專案", board_rev AS "版本", lead_architect AS "架構師", total_power_budget_w AS "功耗預算", main_soc_mcu AS "主控晶片", input_voltage_range AS "輸入電壓", status AS "狀態"
+FROM "30_Resources/02_Permanent" OR "10_Projects"
+WHERE contains(tags, "Hardware/Architecture") OR contains(tags, "Hardware/PowerTree")
+SORT file.mtime DESC
+```
+
+---
+
+## 20. 📐 PCB 疊構阻抗與 Layout 設計目錄 (PCB Stackup & SI/PI Spec Registry)
+檢索各專案 PCB 疊構層數、板材規格與特性阻抗控制定義：
+
+```dataview
+TABLE project AS "專案", board_rev AS "版本", layer_count AS "層數", board_thickness_mm AS "板厚", material_type AS "板材", diff_impedance_target AS "差分阻抗", pcb_vendor AS "板廠", status AS "審查狀態"
+FROM "30_Resources/02_Permanent" OR "10_Projects"
+WHERE contains(tags, "Hardware/PCB") OR contains(tags, "Hardware/SIPI")
+SORT layer_count DESC, file.mtime DESC
+```
+
+---
+
+## 21. 🧪 硬體驗收測試與 DVT 驗證看板 (Hardware Validation & DVT Tracker)
+追蹤樣板點亮、EVT/DVT/PVT 各階段硬體性能與環境測試驗收進度：
+
+```dataview
+TABLE project AS "專案", board_rev AS "版本", test_stage AS "測試階段", test_engineer AS "測試負責人", overall_verdict AS "驗收判定", passed_tests + " / " + total_tests AS "通過測項", status AS "狀態"
+FROM "30_Resources/02_Permanent" OR "10_Projects"
+WHERE contains(tags, "Hardware/Validation") OR contains(tags, "Hardware/Test")
+SORT file.mtime DESC
+```
+
+---
+
+## 22. ⚡ EMC / EMI 合規認證與整改追蹤庫 (EMC & Compliance Tracker)
+追蹤產品 CE/FCC/CISPR 認證進度、超標頻點整改與通過裕度：
+
+```dataview
+TABLE project AS "專案", board_rev AS "版本", standard_target AS "認證標準", issue_type AS "測試類別", min_pass_margin_db AS "最小裕度", eco_number AS "ECO單號", status AS "認證狀態"
+FROM "30_Resources/02_Permanent" OR "10_Projects"
+WHERE contains(tags, "Hardware/EMC") OR contains(tags, "Hardware/Compliance")
+SORT file.mtime DESC
+```
+
