@@ -90,6 +90,38 @@
 
 ---
 
+## 🛠️ 推薦安裝的 Obsidian 外掛 (Recommended Community Plugins)
+
+為獲得完整的全棧研發生命週期管理與動態看板體驗，本知識庫深度整合並推薦以下社群外掛：
+
+### ⚡ 核心必備外掛 (已預先配置 / 強烈建議啟用)
+
+| 外掛名稱 | 外掛 ID / 功能 | 核心應用場景與本庫角色 | 建議設定重點 |
+| :--- | :--- | :--- | :--- |
+| **Dataview** | `dataview`<br>動態資料庫查詢 | **核心驅動引擎**：驅動所有 MOC 主題地圖、軟硬韌 Issue 看板、元件選型清單、API 規格表與週/月覆盤自動化匯總。 | 啟用 `Enable JavaScript Queries` 與 `Enable Inline JavaScript Queries`。 |
+| **Templater** | `templater-obsidian`<br>動態模板腳本 | **模板自動化**：執行 `90_System/Templates/` 下 25 款專業模板，自動注入時間戳、動態 Frontmatter 與目錄路由變數。 | Template folder 設定為 `90_System/Templates`，啟用 `Trigger Templater on new file creation`。 |
+| **WaveDrom** | `obsidian-wavedrom`<br>數位時序波形渲染 | **硬體/韌體匯流排時序**：支援 I2C、SPI、UART、CAN、以太網等數位匯流排的 Setup/Hold Time、時鐘沿與資料幀渲染。 | 安裝後即可直接在代碼塊使用 ````wavedrom` 語法。 |
+| **Omnisearch** | `omnisearch`<br>AI 級全文即時檢索 | **毫秒級全庫檢索**：支援中文分詞、晶片型號（Part Number）、暫存器名稱及 PDF Datasheet / App Note 內文深度檢索。 | 建議建立索引並可啟用 PDF/Office 內文檢索擴充。 |
+| **Linter** | `obsidian-linter`<br>格式化與規範檢查 | **元數據防呆與排版**：自動檢查並格式化 YAML Frontmatter、標題層級、中英文空格及無效空行，維持全庫高度一致性。 | 設定存檔時自動執行（Lint on save），確保 Frontmatter 合規。 |
+| **Smart Connections** | `smart-connections`<br>AI 向量語意關聯 | **概念連結與靈感發現**：基於本地/雲端 Embedding 模型，在撰寫筆記時於側邊欄自動推薦具語意關聯的原子永久筆記。 | 可配置本地模型 (如 BGE-Micro) 或 OpenAI API Key。 |
+
+---
+
+### 💡 推薦進階擴充外掛 (選擇性安裝)
+
+- 📊 **Advanced Tables / Markdown Table Editor** (`table-editor-obsidian`)  
+  *用途*：大幅優化 Markdown 表格編輯體驗（自動對齊、Tab 換行、欄位增刪與公式支援），極度適合編輯**元件電氣參數表**、**降額檢核表**與**暫存器映射表**。
+- 🎨 **Excalidraw** (`obsidian-excalidraw-plugin`)  
+  *用途*：手繪風格向量白板，適合繪製硬體架構概念圖、PCB 佈局草圖、電路方塊圖與狀態機流程。
+- 🔗 **Paste URL into Selection** (`paste-url-into-selection`)  
+  *用途*：選取文字後直接 `Ctrl+V` / `Cmd+V` 貼上網址自動生成 Markdown 連結，便於快速引用 Datasheet、App Note 或 RFC 外部文獻。
+- 🌐 **Local REST API** (`obsidian-local-rest-api`)  
+  *用途*：開啟本地安全 HTTPS REST API，供外部腳本、CLI 工具或 AI Agent (MCP Server) 高速讀寫知識庫。
+- 🏷️ **Tag Wrangler** (`tag-wrangler`)  
+  *用途*：在標籤面板中重新命名、合併或管理階層標籤（如 `Hardware/SIPI`、`Firmware/RTOS`），保持標籤體系整潔。
+
+---
+
 ## 🚀 如何在軟硬韌研發場景與 AI 協同？
 
 ### 1. 記錄與排查硬體 Issue (Hardware Debug)
