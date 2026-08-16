@@ -1,4 +1,5 @@
 {
   "cssTheme": "Underwater",
-  "baseFontSizeAction": true
+  "baseFontSizeAction": true,
+  "baseFontSize": 14
 }
