@@ -298,7 +298,7 @@ flowchart TD
 3. **缺漏 MOC 自愈 (MOC Scaffolding Fallback)**：
    - 若 `03_MOCs/` 中尚無該主題 MOC，自動套用 `90_System/Templates/04_Knowledge/Template - MOC.md` 建立全新主題地圖，並將本筆記掛載為首個節點。
 4. **既有卡片不可變原則**：**不主動修改**其他既有永久卡片內文，保護原有筆記脈絡。
-5. **原始檔生命週期封存**：若來源為 `00_Inbox/`，調用 `move_file` 搬移至 `40_Archives/Inbox_History/`（達成 Inbox Zero）。
+5. **原始檔生命週期封存 (Inbox Zero)**：若來源為 `00_Inbox/`，調用 `move_file` 搬移至 `40_Archives/Inbox_History/`；並將 `#inbox` 標籤轉換為 `#archive`，記錄 `歸檔時間` 與目標永久卡片之 `[[wikilinks]]`（達成 Inbox Zero 閉環）。
 
 #### Stage 5: 變更覆盤與結構化回報 (Audit Summary & Change Log)
 完成整理後，以結構化 Markdown 區塊向使用者回報：
