@@ -47,7 +47,8 @@
 │   ├── 02_Permanent/          # 原子永久筆記：SI/PI、電源、架構、演算法、除錯記錄（至多 3 階子資料夾）
 │   │   ├── Hardware/          # [硬體專題沈澱] SIPI/, Power/, PCB/, Components/, Debug/
 │   │   ├── Firmware/          # [韌體專題沈澱] Drivers/, RTOS/, Protocols/, OTA/
-│   │   └── Software/          # [軟體專題沈澱] Bug/, API/, RFC/, Embedded/, Patterns/
+│   │   ├── Software/          # [軟體專題沈澱] Bug/, API/, RFC/, Embedded/, Patterns/
+│   │   └── Tech/              # [技術與工具沉澱] AI/Agent/, Workflow/ (CitC/, Git/, Obsidian/)
 │   └── 03_MOCs/               # 主題地圖 (Maps of Content)：SIPI, Power, Firmware, Architecture 等樞紐
 ├── 40_Archives/               # [歸檔] 歷史封存資料
 │   ├── Projects/              # 已結案封存的歷史專案 (EVT/DVT/PVT 結案或軟體版本歸檔)
